@@ -4,7 +4,7 @@ services:
     microservice-a:
         container_name: microservice-a
         build:
-            context: ../builds/lb4-cli
+            context: ../../builds/lb4-cli
         command: npm run dev
         restart: always
         ports:
@@ -14,11 +14,11 @@ services:
             MONGO_HOST: 'mongo'
             MONGO_DATABASE: 'microservice-a'
         volumes:
-            - ../source/microservice-a:/app
+            - ../../source/microservice-a:/app
     microservice-b:
         container_name: microservice-b
         build:
-            context: ../builds/lb4-cli
+            context: ../../builds/lb4-cli
         command: npm run dev
         restart: always
         ports:
@@ -28,7 +28,7 @@ services:
             MONGO_HOST: 'mongo'
             MONGO_DATABASE: 'microservice-b'
         volumes:
-            - ../source/microservice-b:/app            
+            - ../../source/microservice-b:/app            
     mongo:
         container_name: mongo
         image: mongo:latest
@@ -36,7 +36,7 @@ services:
             - MONGO_DATA_DIR=/data/db
             - MONGO_LOG_DIR=/dev/null
         volumes:
-            - ../data/mongo:/data/db
+            - ../../data/mongo:/data/db
 
     redis:
         container_name: redis
@@ -45,7 +45,7 @@ services:
             - MONGO_DATA_DIR=/data/db
             - MONGO_LOG_DIR=/dev/null
         volumes:
-            - ../data/redis:/data
+            - ../../data/redis:/data
 
     minio:
         image: minio/minio
@@ -59,7 +59,7 @@ services:
         expose:
             -   '9000'
         volumes:
-            - ../data/minio:/data        
+            - ../../data/minio:/data        
 
     mongoexpress:
             image: mongo-express
